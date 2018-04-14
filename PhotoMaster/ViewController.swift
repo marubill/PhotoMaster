@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Accounts //SNSアップロードに使う
+
+
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -48,6 +51,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
 
     
+
+    
     //写真が選択された時に呼び起こされるメソッド
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.dismiss(animated: true, completion: nil)
@@ -86,6 +91,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
         return newImage!
         
+}
+        
         //元の画像にイラストを合成するメソッド
         func drawMaskImage(image: UIImage) -> UIImage{
             
@@ -114,7 +121,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
         
         
-    }
+
         
         //「テキスト合成」ボタンを押した時に呼ばれるメソッド
         @IBAction func onTappedTextButton(){
@@ -138,14 +145,26 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             }
             
         }
+    
+    
+        //「アップロード」ボタンを押した時に呼ばれるメソッド
+    @IBAction func onTappedUploadButton(){
+        if photoImageView.image != nil{
+            //共有するアイテムを設定
+            let activityVC = UIActivityViewController(activityItems: [photoImageView.image!,"#PhotoMaster"],
+                applicationActivities: nil)
+            self.present(activityVC,animated: true, completion: nil)
+        } else {
+            print("画像がありません")
+    }
                 
                 
                 
             
-
+}
         
     
     
     
-
 }
+
